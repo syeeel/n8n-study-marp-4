@@ -111,6 +111,93 @@ style: |
     box-shadow: 0 4px 12px rgba(0,0,0,0.3);
   }
 
+  /* 画像の高さ制御用クラス */
+  .img-height-small {
+    height: 200px !important;
+    object-fit: cover;
+  }
+
+  .img-height-medium {
+    height: 300px !important;
+    object-fit: cover;
+  }
+
+  .img-height-large {
+    height: 400px !important;
+    object-fit: cover;
+  }
+
+  /* インラインスタイルの画像高さ制御 */
+  section img[style*="height"] {
+    height: var(--img-height) !important;
+    object-fit: cover;
+  }
+
+  /* より確実な画像高さ制御 */
+  section img.img-height-small {
+    height: 200px !important;
+    max-height: 200px !important;
+    object-fit: cover;
+  }
+
+  section img.img-height-medium {
+    height: 300px !important;
+    max-height: 300px !important;
+    object-fit: cover;
+  }
+
+  section img.img-height-large {
+    height: 500px !important;
+    max-height: 500px !important;
+    object-fit: cover;
+  }
+
+  /* パーセンテージ指定の画像高さ制御 */
+  section img.img-height-percent {
+    height: 40vh !important;
+    max-height: 40vh !important;
+    object-fit: cover;
+  }
+
+  /* 2カラムレイアウト用のスタイル */
+  .two-column {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2em;
+    align-items: start;
+  }
+
+  .two-column-left {
+    grid-column: 1;
+  }
+
+  .two-column-right {
+    grid-column: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* 画像と説明文のレイアウト */
+  .image-with-description {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2em;
+    align-items: start;
+    margin: 1em 0;
+  }
+
+  .description-left {
+    grid-column: 1;
+  }
+
+  .image-right {
+    grid-column: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   /* テーブルのスタイル */
   table {
     width: 100%;
@@ -442,7 +529,7 @@ style: |
       <h4>OAuth設定手順</h4>
       <ol>
         <li><strong>Slack App作成</strong> - api.slack.com でアプリ登録</li>
-        <li><strong>OAuth設定</strong> - リダイレクトURLとスコープ設定</li>
+        <li><strong>OAuth設定</strong> - スコープ設定</li>
         <li><strong>インストール</strong> - ワークスペースへのアプリインストール</li>
         <li><strong>トークン取得</strong> - アクセストークンの取得と保存</li>
         <li><strong>権限確認</strong> - 必要な権限の検証</li>
@@ -458,6 +545,22 @@ style: |
         <li><strong>users:read</strong> - ユーザー情報読み取り</li>
       </ul>
     </div>
+  </div>
+</div>
+
+---
+
+<div>
+  <h3>🔑 Slack Credential 設定</h3>
+  <h4>Slack Appを作成後にn8nでCredential登録</h4>
+  <div class="grid-2">
+    <div>
+      <img src="images/bot-access-token.jpg" alt="Slack Credential Setup" style="width: 100%; height: 100px; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.3);">
+    </div>
+    <div>
+      <img src="images/slack-credential.png" alt="Slack OAuth Token" style="width: 100%; height: 100px; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.3);">
+    </div>
+  </div>
   </div>
 </div>
 
@@ -508,7 +611,7 @@ style: |
     <div>
       <h4>イベント駆動アーキテクチャ</h4>
       <ul>
-        <li><strong>Webhook URL</strong> - n8nのWebhookエンドポイント</li>
+        <li><strong>Webhook URL</strong> - n8nのSlackトリガー</li>
         <li><strong>イベントフィルタ</strong> - 必要なイベントのみ受信</li>
         <li><strong>リアルタイム処理</strong> - 即座のレスポンス</li>
         <li><strong>非同期処理</strong> - スケーラブルな設計</li>
@@ -530,32 +633,46 @@ style: |
 
 ---
 
-<div>
-  <h3>🔧 イベント処理の実装例</h3>
-  
-  <div class="code-example" style="font-size: 0.8em;">
-// Slack Event のペイロード例
-{
-  "token": "verification_token",
-  "team_id": "T1234567890",
-  "api_app_id": "A1234567890",
-  "event": {
-    "type": "app_mention",
-    "user": "U1234567890",
-    "text": "&lt;@U0LAN0Z89&gt; Hello AI Agent!",
-    "ts": "1234567890.123456",
-    "channel": "C1234567890",
-    "event_ts": "1234567890.123456"
-  },
-  "type": "event_callback",
-  "event_id": "Ev1234567890",
-  "event_time": 1234567890
-}
-  </div>
+  <h3>🔧 イベント処理の実装例 (n8n)</h3>
 
-  <div class="highlight-box">
+  <div class="grid-2">
+    <div>
+      <img src="images/n8n-slack-node.png" alt="Retrieval QA Chain Process" style="width: 10%; height: 200px; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.3);">
+    </div>
+    <div>
+      <h4>Slack API での設定</h4>
+      <ul>
+        <li><strong>Webhook URLs</strong> - Test URLとProduction URL</li>
+        <li><strong>Credential</strong> - SlackのCredentialを指定</li>
+        <li><strong>Trigger On</strong> - Bot / App Mention</li>
+      </ul>
+      <div class="highlight-box" style="font-size: 0.8em;">
+    <strong>重要:</strong> 検証ではTest URLを、ワークフローリリース後はProduction URLを利用します。
+      </div>
+    </div>
+  </div>
+</div>
+
+---
+
+  <h3>🔧 イベント処理の実装例 (Slack API)</h3>
+
+  <div class="grid-2">
+    <div>
+      <img src="images/event-subscriptions.jpg" alt="Retrieval QA Chain Process" style="width: 100%; height: 350px; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.3);">
+    </div>
+    <div>
+      <h4>Slack API での設定</h4>
+      <ul>
+        <li><strong>Enable Events</strong> - Onに</li>
+        <li><strong>Request URL</strong> - n8nのWebhook URL</li>
+        <li><strong>Subscrive to bot events</strong> - app_mention</li>
+      </ul>
+      <div class="highlight-box" style="font-size: 0.8em;">
     <strong>重要:</strong> Event Subscriptions を使用する場合、n8nのWebhookノードでSlackからのイベントを受信し、
     適切なイベントタイプでフィルタリングして処理することが重要です。
+      </div>
+    </div>
   </div>
 </div>
 
@@ -592,42 +709,6 @@ style: |
 
 ---
 
-<div>
-  <h3>⚡ n8n ワークフローの構築</h3>
-  
-  <div class="grid-3">
-    <div>
-      <h4 style="color: var(--rp-iris);">🎯 基本構成</h4>
-      <ul style="font-size: 0.9em;">
-        <li><strong>Webhook Trigger</strong> - Slackイベント受信</li>
-        <li><strong>IF Node</strong> - イベントタイプ判定</li>
-        <li><strong>AI Agent</strong> - 質問の処理</li>
-        <li><strong>Slack</strong> - 返信送信</li>
-      </ul>
-    </div>
-    <div>
-      <h4 style="color: var(--rp-foam);">🔧 設定のポイント</h4>
-      <ul style="font-size: 0.9em;">
-        <li><strong>Challenge検証</strong> - 初回設定時の検証</li>
-        <li><strong>重複処理防止</strong> - イベントIDチェック</li>
-        <li><strong>エラーハンドリング</strong> - 失敗時の対応</li>
-        <li><strong>タイムアウト設定</strong> - レスポンス時間管理</li>
-      </ul>
-    </div>
-    <div>
-      <h4 style="color: var(--rp-gold);">📊 監視とログ</h4>
-      <ul style="font-size: 0.9em;">
-        <li><strong>実行履歴</strong> - n8nの実行ログ</li>
-        <li><strong>エラー通知</strong> - 失敗時のアラート</li>
-        <li><strong>パフォーマンス</strong> - 応答時間の監視</li>
-        <li><strong>使用状況</strong> - API呼び出し数の追跡</li>
-      </ul>
-    </div>
-  </div>
-</div>
-
----
-
 # 2. Advanced AI Agent
 
 ## 2.1 AI エージェントの内部構成
@@ -651,7 +732,6 @@ style: |
       <ul>
         <li><strong>ツール呼び出し</strong> - 外部API・サービス連携</li>
         <li><strong>データアクセス</strong> - データベース・ファイル操作</li>
-        <li><strong>センサー入力</strong> - 環境情報の取得</li>
         <li><strong>アクチュエータ制御</strong> - 外部システム操作</li>
         <li><strong>通信機能</strong> - 他のエージェントとの連携</li>
       </ul>
@@ -680,25 +760,18 @@ style: |
     <div>
       <h4>プロフィール設定例</h4>
       <div class="code-example" style="font-size: 0.7em;">
-あなたは経験豊富なデータサイエンティスト「Dr. Analytics」です。
+あなたは経験豊富なデータサイエンティストです。<br>
+<br>
+【専門分野】<br>
+- 統計分析と機械学習<br>
+- データ可視化と解釈<br>
+- ビジネス課題の数値的解決<br>
+<br>
+【性格】<br>
+- 論理的で客観的<br>
+- 丁寧で分かりやすい説明<br>
+- データに基づく提案<br>
 
-【専門分野】
-
-- 統計分析と機械学習
-- データ可視化と解釈
-- ビジネス課題の数値的解決
-
-【性格】
-
-- 論理的で客観的
-- 丁寧で分かりやすい説明
-- データに基づく提案
-
-【制約】
-
-- 個人情報は扱わない
-- 推測ではなく事実に基づく
-- 不確実な場合は明示する
 </div>
 </div>
   </div>
@@ -773,33 +846,8 @@ style: |
   </div>
 </div>
 
----
-
-<div>
-  <h3>⚙️ ペルソナベクトルの実装と調整</h3>
-  
-  <div class="highlight-box">
-    <h4>動的ペルソナ調整の例</h4>
-    <div class="code-example" style="font-size: 0.7em;">
-// ユーザータイプに基づくペルソナ調整
-const personaVector = {
-  technical_depth: userType === 'developer' ? 0.9 : 0.3,
-  formality: context.business_meeting ? 0.8 : 0.4,
-  emotion: user.stress_level > 0.7 ? 0.8 : 0.5,
-  creativity: task.type === 'brainstorming' ? 0.9 : 0.3
-};
-
-// システムプロンプトへの反映
-const systemPrompt = `
-あなたは以下の特性を持つ AI アシスタントです：
-
-- 技術的深度: ${personaVector.technical_depth}
-- フォーマル度: ${personaVector.formality}
-- 感情表現: ${personaVector.emotion}
-- 創造性: ${personaVector.creativity}
-`;
-</div>
-  </div>
+<div style="font-size: 0.8em; color: #666; margin-top: 5px;">
+参考: <a href="https://www.anthropic.com/research/persona-vectors" target="_blank">https://www.anthropic.com/research/persona-vectors</a>
 </div>
 
 ---
@@ -835,37 +883,21 @@ const systemPrompt = `
 
 ---
 
-<div>
-  <h3>📝 Function Calling の実装例</h3>
-  
-  <div class="code-example" style="font-size: 0.7em;">
-// n8n AI Agentでのツール定義例
-{
-  "name": "search_web",
-  "description": "インターネットで最新情報を検索します",
-  "parameters": {
-    "type": "object",
-    "properties": {
-      "query": {
-        "type": "string", 
-        "description": "検索クエリ"
-      },
-      "num_results": {
-        "type": "integer",
-        "description": "取得する結果数",
-        "default": 3
-      }
-    },
-    "required": ["query"]
-  }
-}
-
-// AI Agent の判断例
-ユーザー: "最新の AI 技術動向を教えて"
-→ AI が判断: search_web("AI technology trends 2025", 5)
-→ 検索実行 → 結果を基に回答生成
-
+<div class="image-with-description">
+  <div class="description-left">
+    <h3>📝 Function Calling の実装例</h3>
+    <p>Function CallingはTool useとも呼ばれるAI Agentが外部システムやツールを利用するための機能です。</p>
+    <ul>
+      <li><strong>Tool Definition</strong>: 利用可能なツールの定義と説明</li>
+      <li><strong>Parameter Schema</strong>: 各ツールに必要なパラメータの仕様</li>
+      <li><strong>Execution Context</strong>: ツール実行時のコンテキスト管理</li>
+    </ul>
+    <p>この機能により、AIエージェントは複雑なタスクを段階的に実行し、外部リソースを効果的に活用できます。</p>
   </div>
+  <div class="image-right">
+    <img src="images/tool-use.png" alt="Slack Event Subscriptions設定画面" class="img-height-large" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.3);">
+  </div>
+</div>
 </div>
 
 ---
@@ -1263,6 +1295,7 @@ const systemPrompt = `
 {input_text}
 
 【翻訳】
+
 </div>
 </div>
 <div>
@@ -1317,7 +1350,7 @@ const systemPrompt = `
   
   <div class="grid-2">
     <div>
-      <img src="images/llm-rag-image.png" alt="Retrieval QA Chain Process" style="width: 100%; height: 350px; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.3);">
+      <img src="images/event-subscriptions.jpg" alt="Retrieval QA Chain Process" style="width: 100%; height: 350px; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.3);">
     </div>
     <div>
       <h4>n8n での設定</h4>
