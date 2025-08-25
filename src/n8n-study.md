@@ -637,7 +637,7 @@ style: |
 
   <div class="grid-2">
     <div>
-      <img src="images/n8n-slack-node.png" alt="Retrieval QA Chain Process" style="width: 10%; height: 200px; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.3);">
+      <img src="images/n8n-slack-node.png" alt="Retrieval QA Chain Process" style="width: 100%; height: 350px; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.3);">
     </div>
     <div>
       <h4>Slack API での設定</h4>
@@ -1674,7 +1674,7 @@ style: |
 
 ---
 
-<div class="card animated">
+<div>
   <h3>🎉 まとめ</h3>
   
   <div style="text-align: center; padding: 2em;">
