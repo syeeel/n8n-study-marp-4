@@ -1676,7 +1676,6 @@ style: |
 
 <div>
   <h3>🎉 まとめ</h3>
-  
   <div style="text-align: center; padding: 2em;">
     <h2 style="color: var(--rp-iris); margin-bottom: 1em;">AI Agent & Slack App 開発完了！</h2>
     <p style="font-size: 24px; margin-bottom: 1.5em;">
