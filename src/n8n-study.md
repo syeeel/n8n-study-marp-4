@@ -1003,38 +1003,7 @@ style: |
 
 ---
 
-## 2.8 思考プロセスの評価と修正
-
-<div>
-  <h3>🧠 メタ認知システム</h3>
-  
-  <div class="grid-2">
-    <div>
-      <h4>思考プロセスの監視</h4>
-      <ul>
-        <li><strong>推論チェーン分析</strong> - 論理的飛躍の検出</li>
-        <li><strong>前提条件検証</strong> - 仮定の妥当性確認</li>
-        <li><strong>バイアス検出</strong> - 認知バイアスの特定</li>
-        <li><strong>証拠強度評価</strong> - 根拠の信頼性判定</li>
-        <li><strong>代替案検討</strong> - 他の解釈可能性</li>
-      </ul>
-    </div>
-    <div>
-      <h4>改善メカニズム</h4>
-      <ul>
-        <li><strong>思考パターン学習</strong> - 効果的な推論方法の蓄積</li>
-        <li><strong>エラー分析</strong> - 失敗パターンの特定</li>
-        <li><strong>戦略最適化</strong> - より良いアプローチの発見</li>
-        <li><strong>知識統合</strong> - 新しい情報の既存知識への統合</li>
-        <li><strong>継続的改善</strong> - 経験に基づく能力向上</li>
-      </ul>
-    </div>
-  </div>
-</div>
-
----
-
-## 2.9 メモリ
+## 2.8 メモリ
 
 <div>
   <h3>🧠 AI Agent のメモリアーキテクチャ</h3>
@@ -1075,7 +1044,7 @@ style: |
 
 ---
 
-## 2.10 シングルエージェントワークフロー
+## 2.9 シングルエージェントワークフロー
 
 <div>
   <h3>🤖 単体エージェントの処理フロー</h3>
@@ -1108,7 +1077,7 @@ style: |
 
 ---
 
-## 2.11 マルチエージェントワークフロー
+## 2.10 マルチエージェントワークフロー
 
 <div>
   <h3>👥 協調型エージェントシステム</h3>
@@ -1177,7 +1146,7 @@ style: |
 
 # 3. LangChain ベースの n8n AI ノード
 
-## 3.1 AI Agent - LangChain の AgentExecutor を使用
+## 3.1 AI Agent - LangChain の AgentExecutor 相当
 
 <div>
   <h3>🤖 AI Agent ノードの機能概要</h3>
@@ -1208,43 +1177,7 @@ style: |
 
 ---
 
-<div>
-  <h3>⚙️ AI Agent の実装例</h3>
-  
-  <div class="code-example" style="font-size: 0.7em;">
-// System Message の設定例
-あなたは高度なデータ分析エージェントです。以下のツールを使用してユーザーの質問に答えてください：
-
-【利用可能ツール】
-
-1. search_web - インターネット検索
-2. calculate - 数学計算
-3. query_database - データベース検索
-4. generate_chart - グラフ生成
-
-【処理方針】
-
-- 段階的に問題を分解する
-- 各ステップで適切なツールを選択
-- 結果の妥当性を常に検証
-- 不明な点は追加調査を行う
-- 最終回答は根拠と共に提示
-
-【制約】
-
-- 個人情報は扱わない
-- 推測ではなく事実に基づく
-- エラー時は代替手段を検討
-    </div>
-
-    <div class="highlight-box">
-      <strong>重要:</strong> AI Agentノードは推論とツール実行を繰り返し、複雑なタスクを自動的に分解・実行します。
-    </div>
-  </div>
-
----
-
-## 3.2 Basic LLM Chain - LangChain の LLMChain を利用
+## 3.2 Basic LLM Chain - LangChain の LLMChain 相当
 
 <div>
   <h3>⛓️ Basic LLM Chain の用途</h3>
@@ -1314,7 +1247,7 @@ style: |
 
 ---
 
-## 3.3 Question and Answer Chain - LangChain の QA チェーンを実装
+## 3.3 Question and Answer Chain - LangChain の QA チェーン相当
 
 <div>
   <h3>❓ Q&A Chain の仕組み</h3>
@@ -1323,8 +1256,6 @@ style: |
     <div>
       <h4>QAチェーンの種類</h4>
       <ul>
-        <li><strong>Stuff Chain</strong> - 単純な文書連結</li>
-        <li><strong>Map-Reduce</strong> - 分割処理後統合</li>
         <li><strong>Refine</strong> - 段階的精緻化</li>
         <li><strong>Map-Rerank</strong> - スコアベース選択</li>
         <li><strong>Retrieval QA</strong> - ベクトル検索ベース</li>
@@ -1337,7 +1268,6 @@ style: |
         <li><strong>文書検索</strong> - 関連情報の特定</li>
         <li><strong>コンテキスト構築</strong> - 参照文書の整理</li>
         <li><strong>回答生成</strong> - LLMによる回答作成</li>
-        <li><strong>根拠提示</strong> - 参照元の明示</li>
       </ol>
     </div>
   </div>
@@ -1350,20 +1280,18 @@ style: |
   
   <div class="grid-2">
     <div>
-      <img src="images/event-subscriptions.jpg" alt="Retrieval QA Chain Process" style="width: 100%; height: 350px; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.3);">
+      <img src="images/qachain.png" alt="Retrieval QA Chain Process" style="width: 100%; height: 350px; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.3);">
     </div>
     <div>
       <h4>n8n での設定</h4>
       <ul>
         <li><strong>Vector Store</strong> - Pinecone接続</li>
-        <li><strong>Retriever</strong> - 検索設定（top_k, score_threshold）</li>
-        <li><strong>Chain Type</strong> - stuff/map_reduce選択</li>
-        <li><strong>Return Sources</strong> - 参照元表示の有無</li>
-        <li><strong>Custom Prompt</strong> - QA専用プロンプト</li>
+        <li><strong>Retriever</strong> - 検索設定</li>
+        <li><strong>Name space</strong> - Pineconのnamespace</li>
+        <li><strong>Rerank</strong> - cohereによるランク付け</li>
       </ul>
       <div class="highlight-box" style="font-size: 0.8em;">
-        <strong>ベストプラクティス:</strong> top_k=3-5, score_threshold=0.7以上を推奨。
-        文書量が多い場合はmap_reduceチェーンを使用。
+        <strong>ベストプラクティス:</strong> シンプルなbotや応答速度が求められるエージェントで利用する
       </div>
     </div>
   </div>
@@ -1371,7 +1299,7 @@ style: |
 
 ---
 
-## 3.4 Summarization Chain - LangChain の要約チェーンを使用
+## 3.4 Summarization Chain - LangChain の要約チェーン相当
 
 <div>
   <h3>📄 Summarization Chain の戦略</h3>
@@ -1414,40 +1342,21 @@ style: |
 
 <div>
   <h3>⚡ 要約の品質向上テクニック</h3>
-  
   <div class="code-example" style="font-size: 0.7em;">
+
 // カスタム要約プロンプトの例
 以下の文書を{summary_length}で要約してください：
-
-【要約の要件】
 
 - 重要なポイントを{key_points}個に絞る
 - {target_audience}向けの内容にする
 - {writing_style}で記述する
-- 数値やデータは正確に含める
+    </div>
 
-【文書内容】
-{text}
-
-【要約結果】
-
-## 概要 (1-2 文)
-
-## 主要ポイント
-
-1.
-2.
-3.
-
-## 結論・示唆
-
+    <div class="highlight-box">
+      <strong>パフォーマンス最適化:</strong> 10,000トークン未満はStuff、それ以上はMap-Reduceを使用。
+      要約品質を重視する場合はRefine戦略を選択。
+    </div>
   </div>
-
-  <div class="highlight-box">
-    <strong>パフォーマンス最適化:</strong> 10,000トークン未満はStuff、それ以上はMap-Reduceを使用。
-    要約品質を重視する場合はRefine戦略を選択。
-  </div>
-</div>
 
 ---
 
@@ -1482,70 +1391,29 @@ style: |
 
 ---
 
+## 3.6 Slack App を作ってみよう
+
 <div>
-  <h3>📊 抽出スキーマの設計例</h3>
+  <h3>🛠️ 実践：各種LLMノードの作成</h3>
   
   <div class="grid-2">
     <div>
-      <h4>履歴書解析スキーマ</h4>
-      <div class="code-example" style="font-size: 0.7em;">
-{
-  "type": "object",
-  "properties": {
-    "personal_info": {
-      "type": "object",
-      "properties": {
-        "name": {"type": "string"},
-        "email": {"type": "string", "format": "email"},
-        "phone": {"type": "string"},
-        "address": {"type": "string"}
-      }
-    },
-    "experience": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "company": {"type": "string"},
-          "position": {"type": "string"},
-          "start_date": {"type": "string", "format": "date"},
-          "end_date": {"type": "string", "format": "date"},
-          "description": {"type": "string"}
-        }
-      }
-    },
-    "skills": {
-      "type": "array",
-      "items": {"type": "string"}
-    }
-  }
-}
-      </div>
+      <h4>Basic LLM Chain ノード</h4>
+      <ol style="font-size: 0.9em;">
+        <li><strong>ノード追加</strong> → <strong>"AI"</strong> → <strong>"Basic LLM Chain"</strong></li>
+        <li><strong>Model:</strong> Geminiを選択</li>
+        <li><strong>Prompt Template:</strong> プロンプト設定</li>
+      </ol>
     </div>
     <div>
-      <h4>抽出結果例</h4>
-      <div class="code-example" style="font-size: 0.7em;">
-{
-  "personal_info": {
-    "name": "田中太郎",
-    "email": "tanaka@example.com",
-    "phone": "090-1234-5678",
-    "address": "東京都渋谷区..."
-  },
-  "experience": [
-    {
-      "company": "株式会社ABC",
-      "position": "ソフトウェアエンジニア",
-      "start_date": "2020-04-01",
-      "end_date": "2023-03-31",
-      "description": "Webアプリケーション開発..."
-    }
-  ],
-  "skills": [
-    "Python", "JavaScript", "React", "AWS"
-  ]
-}
-      </div>
+      <h4>Information Extractor ノード</h4>
+      <ol style="font-size: 0.9em;">
+        <li><strong>ノード追加</strong> → <strong>"AI"</strong> → <strong>"Information Extractor"</strong></li>
+        <li><strong>System Prompt Template:</strong> デフォルトを使用</li>
+        <li><strong>Schema Definition:</strong> From Attribute Description</li>
+        <li><strong>Data Types:</strong> string, number, date等設定</li>
+        <li><strong>Validation:</strong> 抽出データの検証ルール</li>
+      </ol>
     </div>
   </div>
 </div>
