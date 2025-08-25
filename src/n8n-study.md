@@ -1700,10 +1700,5 @@ style: |
         </ul>
       </div>
     </div>
-    <div style="margin-top: 2em; font-size: 34px;">
-      <span style="color: var(--rp-gold);">🚀</span>
-      <span style="color: var(--rp-iris); font-weight: bold;">Keep Building AI Agents!</span>
-      <span style="color: var(--rp-foam);">🤖</span>
-    </div>
   </div>
 </div>
