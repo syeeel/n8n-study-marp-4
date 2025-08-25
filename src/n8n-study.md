@@ -1391,7 +1391,7 @@ style: |
 
 ---
 
-## 3.6 Slack App を作ってみよう
+## 3.6 LLM Node を作ってみよう
 
 <div>
   <h3>🛠️ 実践：各種LLMノードの作成</h3>
@@ -1515,54 +1515,6 @@ style: |
         <li><strong>セキュリティ</strong> - 機密情報はCredentials使用</li>
       </ul>
     </div>
-  </div>
-</div>
-
----
-
-<div>
-  <h3>🔧 環境別設定の実装例</h3>
-  
-  <div class="code-example" style="font-size: 0.7em;">
-// Set ノードでの環境変数設定例
-const environment = process.env.NODE_ENV || 'development';
-
-let config = {};
-
-switch(environment) {
-case 'production':
-config = {
-apiUrl: 'https://api.production.com',
-logLevel: 'error',
-maxRetries: 3,
-timeout: 30000
-};
-break;
-case 'staging':
-config = {
-apiUrl: 'https://api.staging.com',
-logLevel: 'warn',
-maxRetries: 2,
-timeout: 20000
-};
-break;
-default: // development
-config = {
-apiUrl: 'https://api.dev.com',
-logLevel: 'debug',
-maxRetries: 1,
-timeout: 10000
-};
-}
-
-return [{
-json: {
-environment,
-config,
-timestamp: new Date().toISOString()
-}
-}];
-
   </div>
 </div>
 
@@ -1710,6 +1662,13 @@ timestamp: new Date().toISOString()
           <td>$0.02/分</td>
           <td>⭐⭐⭐⭐</td>
         </tr>
+        <tr>
+          <td><strong>Assembly AI</strong></td>
+          <td>SaaSのサービス</td>
+          <td>20言語</td>
+          <td>$0.02/分</td>
+          <td>⭐⭐⭐⭐</td>
+        </tr>
       </tbody>
     </table>
   </div>
@@ -1744,7 +1703,6 @@ timestamp: new Date().toISOString()
         <h4 style="color: var(--rp-gold);">次のステップ</h4>
         <ul style="text-align: left; font-size: 18px;">
           <li>プロダクション環境での運用</li>
-          <li>監視とメンテナンス体制構築</li>
           <li>継続的な改善とアップデート</li>
           <li>チーム全体への知識共有</li>
         </ul>
