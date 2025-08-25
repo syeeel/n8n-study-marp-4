@@ -1656,13 +1656,6 @@ style: |
           <td>⭐⭐⭐⭐</td>
         </tr>
         <tr>
-          <td><strong>Azure Cognitive</strong></td>
-          <td>カスタマイズ可能</td>
-          <td>85言語</td>
-          <td>$0.02/分</td>
-          <td>⭐⭐⭐⭐</td>
-        </tr>
-        <tr>
           <td><strong>Assembly AI</strong></td>
           <td>SaaSのサービス</td>
           <td>20言語</td>
